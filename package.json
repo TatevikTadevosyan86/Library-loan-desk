@@ -1,0 +1,8 @@
+{
+  "name": "library-loan-desk",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "node --test"
+  }
+}
