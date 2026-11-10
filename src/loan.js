@@ -3,5 +3,7 @@ export function calculateDueDay(checkoutDay) {
 }
 
 export function createLoan(bookId, checkoutDay) {
+  const dueDay = calculateDueDay(checkoutDay);
+  return { bookId, checkoutDay, dueDay };
   
 }
