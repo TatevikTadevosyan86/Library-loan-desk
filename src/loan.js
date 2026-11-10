@@ -1,5 +1,7 @@
+
+const LOAN_PERIOD_DAYS = 7;
 export function calculateDueDay(checkoutDay) {
-  return checkoutDay + 7;
+  return checkoutDay + LOAN_PERIOD_DAYS;
 }
 
 export function createLoan(bookId, checkoutDay) {
