@@ -11,8 +11,8 @@ export class CheckoutService {
     if (existingLoan) {
       return;
     }
-    
+
     const loan = createLoan(bookId, checkoutDay);
-  this.repository.save(loan);
+    this.repository.save(loan);
   }
 }

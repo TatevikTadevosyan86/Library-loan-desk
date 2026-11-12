@@ -2,7 +2,7 @@ import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { CheckoutService } from '../src/checkout-service.js';
 
-test('checkout service creates a loan record for the book exactly once', (t) => {
+test('checkout saves a loan once when the book is available', (t) => {
   const repository = {
     save:t.mock.fn()
   , findByBookId: () => undefined};
