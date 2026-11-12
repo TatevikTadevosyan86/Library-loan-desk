@@ -6,6 +6,12 @@ export class CheckoutService {
   }
 
   checkout(bookId, checkoutDay) {
+    const existingLoan = this.repository.findByBookId(bookId);
+
+    if (existingLoan) {
+      return;
+    }
+    
     const loan = createLoan(bookId, checkoutDay);
   this.repository.save(loan);
   }
