@@ -1,18 +1,19 @@
-import { createLoan } from './loan.js';
+
 
 export class CheckoutService {
-  constructor(repository) {
+  constructor(repository, factory) {
     this.repository = repository;
+    this.factory = factory;
   }
 
-  checkout(bookId, checkoutDay) {
+  checkout(bookId) {
     const existingLoan = this.repository.findByBookId(bookId);
 
     if (existingLoan) {
       return;
     }
 
-    const loan = createLoan(bookId, checkoutDay);
+    const loan = this.factory.create(bookId);
     this.repository.save(loan);
   }
 }

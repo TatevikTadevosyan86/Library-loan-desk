@@ -6,8 +6,11 @@ test('checkout saves a loan once when the book is available', (t) => {
   const repository = {
     save:t.mock.fn()
   , findByBookId: () => undefined};
-  const service = new CheckoutService(repository);
-  service.checkout('B42', 10);
+  const factory = {
+  create: () => ({ bookId: 'B42', checkoutDay: 10, dueDay: 17 }),
+};
+  const service = new CheckoutService(repository,factory);
+  service.checkout('B42');
   assert.equal(repository.save.mock.calls.length, 1);
 })
 
@@ -32,7 +35,7 @@ test('checkout saves the loan supplied by the factory', (t) => {
     findByBookId: () => undefined,
   };
   const service = new CheckoutService(repository,factory);
-  service.checkout('B42', 10);
+  service.checkout('B42');
 
   const savedLoan = repository.save.mock.calls[0].arguments[0];
   assert.equal(savedLoan, loanFromFactory);
