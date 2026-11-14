@@ -1,5 +1,3 @@
-
-
 export class CheckoutService {
   constructor(repository, factory) {
     this.repository = repository;

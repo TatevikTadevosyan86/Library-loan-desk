@@ -20,8 +20,9 @@ test('checkout does not save another loan for an already borrowed book', (t) => 
     save: t.mock.fn(),
     findByBookId: () => ({ bookId: 'B42', checkoutDay: 10, dueDay: 17 }),
   };
-  const service = new CheckoutService(repository);
-  service.checkout('B42', 11);
+ const factory = { create: () => undefined };
+  const service = new CheckoutService(repository, factory);
+  service.checkout('B42');
   assert.equal(repository.save.mock.calls.length, 0);
 });
 
