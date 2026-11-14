@@ -1,5 +1,6 @@
 
 
 export function calculateLateFee(dueDay, returnDay) {
-   return 0;
+   const daysOverdue = returnDay - dueDay;
+    return Math.max(0, daysOverdue);
   }
