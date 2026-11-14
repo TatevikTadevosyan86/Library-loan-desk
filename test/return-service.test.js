@@ -1,0 +1,19 @@
+import { test } from 'node:test';
+import assert from 'node:assert/strict';
+import { ReturnService } from '../src/return-service.js';
+
+test('returning a borrowed book removes its active loan', (t) => {
+  const existingLoan = { bookId: 'B42', checkoutDay: 10, dueDay: 17 };
+  const repository = {
+    findByBookId: () => existingLoan,
+    remove: t.mock.fn(),
+  };
+  const service = new ReturnService(repository);
+  service.returnBook('B42');
+ 
+  const calls = repository.remove.mock.calls;
+assert.equal(calls.length, 1);
+
+const removedBookId = calls[0].arguments[0];
+assert.equal(removedBookId, 'B42');
+});
