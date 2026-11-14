@@ -13,3 +13,9 @@ test('returning a book two days late costs 2 fee units',() => {
   assert.equal(actual, expected)
   
 })
+
+test('returning a book before its due day costs nothing',() => {
+  const actual = calculateLateFee (19, 17)
+  const expected = 0
+  assert.equal(actual, expected)
+})
