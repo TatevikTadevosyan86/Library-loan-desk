@@ -14,8 +14,13 @@ export class ReturnService {
       const lateFee = calculateLateFee(existingLoan.dueDay, returnDay);
 
       this.repository.remove(bookId);
-      return lateFee;
+      return new ReturnReceipt(bookId, lateFee);
     }
   }
 }
-export class ReturnReceipt {}
+export class ReturnReceipt {
+  constructor(bookId, lateFee) {
+    this.bookId = bookId;
+    this.lateFee = lateFee;
+  }
+}
