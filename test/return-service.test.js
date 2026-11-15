@@ -1,6 +1,6 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { ReturnService } from '../src/return-service.js';
+import { ReturnService,ReturnReceipt } from '../src/return-service.js';
 
 test('returning a borrowed book removes its active loan', (t) => {
   const existingLoan = { bookId: 'B42', checkoutDay: 10, dueDay: 17 };
@@ -20,7 +20,7 @@ test('returning a borrowed book removes its active loan', (t) => {
   assert.equal(removedBookId, 'B42');
 });
 
-test('returning a book two days late gives a fee of 2', (t) => {
+test('returning a book two days late gives a receipt with a fee of 2', (t) => {
   const existingLoan = { bookId: 'B42', checkoutDay: 10, dueDay: 17 };
   const repository = {
     findByBookId: () => existingLoan,
@@ -29,7 +29,9 @@ test('returning a book two days late gives a fee of 2', (t) => {
   const clock = { today: () => 19 };
   const service = new ReturnService(repository, clock);
 
-  const actualFee = service.returnBook('B42');
+  const receipt = service.returnBook('B42');
 
-  assert.equal(actualFee, 2);
+assert.equal(receipt instanceof ReturnReceipt, true);
+assert.equal(receipt.bookId, 'B42');
+assert.equal(receipt.lateFee, 2);
 });
