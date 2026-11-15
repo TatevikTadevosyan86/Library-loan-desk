@@ -17,3 +17,16 @@ assert.equal(calls.length, 1);
 const removedBookId = calls[0].arguments[0];
 assert.equal(removedBookId, 'B42');
 });
+test('returning a book two days late gives a fee of 2', (t) => {
+  const existingLoan = { bookId: 'B42', checkoutDay: 10, dueDay: 17 };
+  const repository = {
+    findByBookId: () => existingLoan,
+    remove: t.mock.fn(),
+  };
+  const clock = { today: () => 19 };
+  const service = new ReturnService(repository, clock);
+
+  const actualFee = service.returnBook('B42');
+
+  assert.equal(actualFee, 2);
+});
