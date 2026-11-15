@@ -4,5 +4,10 @@ export class ReturnService {
   }
 
   returnBook(bookId) {
+     const loan = this.repository.findByBookId(bookId);
+
+  if (loan) {
+    this.repository.remove(bookId);
   }
-};
+}
+}
