@@ -4,9 +4,9 @@ export class ReturnService {
   }
 
   returnBook(bookId) {
-     const loan = this.repository.findByBookId(bookId);
+     const existingLoan = this.repository.findByBookId(bookId);
 
-  if (loan) {
+  if (existingLoan) {
     this.repository.remove(bookId);
   }
 }
