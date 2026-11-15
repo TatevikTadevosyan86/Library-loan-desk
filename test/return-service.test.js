@@ -9,23 +9,25 @@ test('returning a borrowed book removes its active loan', (t) => {
     remove: t.mock.fn(),
   };
   const clock = { today: () => 17 };
-const service = new ReturnService(repository, clock);
-  service.returnBook('B42');
- 
-  const calls = repository.remove.mock.calls;
-assert.equal(calls.length, 1);
+  const service = new ReturnService(repository, clock);
 
-const removedBookId = calls[0].arguments[0];
-assert.equal(removedBookId, 'B42');
+  service.returnBook('B42');
+
+  const calls = repository.remove.mock.calls;
+  assert.equal(calls.length, 1);
+
+  const removedBookId = calls[0].arguments[0];
+  assert.equal(removedBookId, 'B42');
 });
+
 test('returning a book two days late gives a fee of 2', (t) => {
   const existingLoan = { bookId: 'B42', checkoutDay: 10, dueDay: 17 };
   const repository = {
     findByBookId: () => existingLoan,
     remove: t.mock.fn(),
   };
-const clock = { today: () => 19 };
-const service = new ReturnService(repository, clock);
+  const clock = { today: () => 19 };
+  const service = new ReturnService(repository, clock);
 
   const actualFee = service.returnBook('B42');
 
