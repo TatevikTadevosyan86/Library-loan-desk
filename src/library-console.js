@@ -12,8 +12,11 @@ export class LibraryConsole {
     if (action === 'borrow') {
       const loan = this.checkoutService.checkout(bookId);
       if (loan) {
-        const message = `Book ${loan.bookId} borrowed. Due on day ${loan.dueDay}.`;
-        this.print(message);
+        const millisecondsPerDay = 24 * 60 * 60 * 1000;
+        const dueDate = new Date(loan.dueDay * millisecondsPerDay);
+        const formattedDueDate = dueDate.toISOString().slice(0, 10);
+        const message = `Book ${loan.bookId} borrowed. Due on ${formattedDueDate}.`;
+       this.print(message);
       }
     }
     else if (action === 'return') {
