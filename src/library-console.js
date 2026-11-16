@@ -1,7 +1,7 @@
 export class LibraryConsole {
-  constructor(checkoutService, ) {
+  constructor(checkoutService,  returnService)  {
     this.checkoutService = checkoutService;
-    
+    this.returnService = returnService;
   }
     runCommand(command) {
     const commandParts = command.split(' ');
@@ -11,5 +11,8 @@ export class LibraryConsole {
     if (action === 'borrow') {
       this.checkoutService.checkout(bookId);
     }
+    if (action === 'return') {
+      this.returnService.returnBook(bookId);
+    } 
   }
 }
