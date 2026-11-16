@@ -51,7 +51,7 @@ test('checkout returns the loan it saved', (t) => {
   };
   const service = new CheckoutService(repository, factory);
 
-  const result = service.checkout('B42');
+  const returnedLoan = service.checkout('B42');
 
-  assert.equal(result, loan);
+  assert.equal(returnedLoan, loan);
 });
