@@ -1,7 +1,8 @@
 export class LibraryConsole {
-  constructor(checkoutService,  returnService)  {
+  constructor(checkoutService,  returnService, print  )  {
     this.checkoutService = checkoutService;
     this.returnService = returnService;
+    this.print = print;
   }
     runCommand(command) {
     const commandParts = command.split(' ');
@@ -12,7 +13,13 @@ export class LibraryConsole {
       this.checkoutService.checkout(bookId);
     }
     else if (action === 'return') {
-      this.returnService.returnBook(bookId);
+      const receipt = this.returnService.returnBook(bookId);
+     
+
+      if (receipt) {
+        const message = `Book ${receipt.bookId} returned. Late fee: ${receipt.lateFee}.`;
+        this.print(message);
+      }
     } 
   }
 }
