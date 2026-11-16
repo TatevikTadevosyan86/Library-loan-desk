@@ -55,6 +55,6 @@ test('the borrow command displays the book ID and due day', (t) => {
   const calls = print.mock.calls;
   assert.equal(calls.length, 1);
 
-  const message = calls[0].arguments[0];
-  assert.equal(message, 'Book B42 borrowed. Due on day 17.');
+  const checkedOutBookId= calls[0].arguments[0];
+  assert.equal(checkedOutBookId, 'Book B42 borrowed. Due on day 17.');
 });
