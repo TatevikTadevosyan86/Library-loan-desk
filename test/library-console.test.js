@@ -43,3 +43,18 @@ test('the return command displays the book ID and late fee', (t) => {
   const message = calls[0].arguments[0];
   assert.equal(message, 'Book B42 returned. Late fee: 2.');
 });
+test('the borrow command displays the book ID and due day', (t) => {
+  const loan = { bookId: 'B42', checkoutDay: 10, dueDay: 17 };
+  const checkoutService = { checkout: () => loan };
+  const returnService = { returnBook: t.mock.fn() };
+  const print = t.mock.fn();
+  const libraryConsole = new LibraryConsole(checkoutService, returnService, print);
+
+  libraryConsole.runCommand('borrow B42');
+
+  const calls = print.mock.calls;
+  assert.equal(calls.length, 1);
+
+  const message = calls[0].arguments[0];
+  assert.equal(message, 'Book B42 borrowed. Due on day 17.');
+});
