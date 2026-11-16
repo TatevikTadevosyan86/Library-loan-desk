@@ -1,12 +1,12 @@
 export class LoanRepository {
   constructor() {
-    this.loans = new Map();
+    this.loansByBookId = new Map();
   } 
   save(loan) {
-    this.loans.set(loan.bookId, loan);
+    this.loansByBookId.set(loan.bookId, loan);
     
   }
   findByBookId(bookId) {
-    return this.loans.get(bookId);
+    return this.loansByBookId.get(bookId);
   }
 }
