@@ -6,6 +6,8 @@ export class LoanRepository {
     this.loansByBookId.set(loan.bookId, loan);
     
   }
+    remove(bookId) {
+  }
   findByBookId(bookId) {
     return this.loansByBookId.get(bookId);
   }
