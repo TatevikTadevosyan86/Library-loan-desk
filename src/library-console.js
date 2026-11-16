@@ -10,10 +10,14 @@ export class LibraryConsole {
     const bookId = commandParts[1];
 
     if (action === 'borrow') {
-      this.checkoutService.checkout(bookId);
-  }
-      else if (action === 'return') {
-        const receipt = this.returnService.returnBook(bookId);
+      const loan = this.checkoutService.checkout(bookId);
+      if (loan) {
+        const message = `Book ${loan.bookId} borrowed. Due on day ${loan.dueDay}.`;
+        this.print(message);
+      }
+    }
+    else if (action === 'return') {
+      const receipt = this.returnService.returnBook(bookId);
      
 
       if (receipt) {
