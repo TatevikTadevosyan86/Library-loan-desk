@@ -7,6 +7,7 @@ export class LoanRepository {
     
   }
     remove(bookId) {
+    this.loansByBookId.delete(bookId);
   }
   findByBookId(bookId) {
     return this.loansByBookId.get(bookId);
