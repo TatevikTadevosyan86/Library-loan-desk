@@ -11,7 +11,7 @@ export class LibraryConsole {
     if (action === 'borrow') {
       this.checkoutService.checkout(bookId);
     }
-    if (action === 'return') {
+    else if (action === 'return') {
       this.returnService.returnBook(bookId);
     } 
   }
