@@ -1,3 +1,6 @@
+
+import { MILLISECONDS_PER_DAY } from './time.js';
+
 export class LibraryConsole {
   constructor(checkoutService,  returnService, print  )  {
     this.checkoutService = checkoutService;
@@ -12,8 +15,7 @@ export class LibraryConsole {
     if (action === 'borrow') {
       const loan = this.checkoutService.checkout(bookId);
       if (loan) {
-        const millisecondsPerDay = 24 * 60 * 60 * 1000;
-        const dueDate = new Date(loan.dueDay * millisecondsPerDay);
+        const dueDate = new Date(loan.dueDay * MILLISECONDS_PER_DAY);
         const formattedDueDate = dueDate.toISOString().slice(0, 10);
         const message = `Book ${loan.bookId} borrowed. Due on ${formattedDueDate}.`;
        this.print(message);

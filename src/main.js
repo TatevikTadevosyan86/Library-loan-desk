@@ -4,11 +4,11 @@ import { LoanFactory } from './loan-factory.js';
 import { CheckoutService } from './checkout-service.js';
 import { ReturnService } from './return-service.js';
 import { LibraryConsole } from './library-console.js';
+import { MILLISECONDS_PER_DAY } from './time.js';
 
 const clock = {
   today() {
-    const millisecondsPerDay = 24 * 60 * 60 * 1000;
-    return Math.floor(Date.now() / millisecondsPerDay);
+    return Math.floor(Date.now() / MILLISECONDS_PER_DAY);
   },
 };
 
