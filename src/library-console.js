@@ -4,9 +4,9 @@ export class LibraryConsole {
     
   }
     runCommand(command) {
-    const words = command.split(' ');
-    const action = words[0];
-    const bookId = words[1];
+    const commandParts = command.split(' ');
+    const action = commandParts[0];
+    const bookId = commandParts[1];
 
     if (action === 'borrow') {
       this.checkoutService.checkout(bookId);
