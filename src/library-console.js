@@ -4,16 +4,16 @@ export class LibraryConsole {
     this.returnService = returnService;
     this.print = print;
   }
-    runCommand(command) {
+  runCommand(command) {
     const commandParts = command.split(' ');
     const action = commandParts[0];
     const bookId = commandParts[1];
 
     if (action === 'borrow') {
       this.checkoutService.checkout(bookId);
-    }
-    else if (action === 'return') {
-      const receipt = this.returnService.returnBook(bookId);
+  }
+      else if (action === 'return') {
+        const receipt = this.returnService.returnBook(bookId);
      
 
       if (receipt) {
