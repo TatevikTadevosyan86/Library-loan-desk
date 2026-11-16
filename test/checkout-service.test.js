@@ -41,3 +41,17 @@ test('checkout saves the loan supplied by the factory', (t) => {
   const savedLoan = repository.save.mock.calls[0].arguments[0];
   assert.equal(savedLoan, loanFromFactory);
 });
+
+test('checkout returns the loan it saved', (t) => {
+  const loan = { bookId: 'B42', checkoutDay: 10, dueDay: 17 };
+  const factory = { create: () => loan };
+  const repository = {
+    findByBookId: () => undefined,
+    save: t.mock.fn(),
+  };
+  const service = new CheckoutService(repository, factory);
+
+  const result = service.checkout('B42');
+
+  assert.equal(result, loan);
+});
