@@ -13,5 +13,6 @@ export class CheckoutService {
 
     const loan = this.factory.create(bookId);
     this.repository.save(loan);
+    return loan;
   }
 }
