@@ -35,3 +35,17 @@ assert.equal(receipt instanceof ReturnReceipt, true);
 assert.equal(receipt.bookId, 'B42');
 assert.equal(receipt.lateFee, 2);
 });
+
+test('returning a book with no active loan does not remove anything', (t) => {
+  const repository = {
+    findByBookId: () => undefined,
+    remove: t.mock.fn(),
+  };
+  const clock = { today: () => 19 };
+  const service = new ReturnService(repository, clock);
+
+  const receipt = service.returnBook('B42');
+
+  assert.equal(receipt, undefined);
+  assert.equal(repository.remove.mock.calls.length, 0);
+});
