@@ -1,0 +1,147 @@
+TAP version 13
+# Subtest: checkout saves a loan once when the book is available
+ok 1 - checkout saves a loan once when the book is available
+  ---
+  duration_ms: 6.0435
+  type: 'test'
+  ...
+# Subtest: checkout does not save another loan for an already borrowed book
+ok 2 - checkout does not save another loan for an already borrowed book
+  ---
+  duration_ms: 1.3034
+  type: 'test'
+  ...
+# Subtest: checkout saves the loan supplied by the factory
+ok 3 - checkout saves the loan supplied by the factory
+  ---
+  duration_ms: 0.7444
+  type: 'test'
+  ...
+# Subtest: checkout returns the loan it saved
+ok 4 - checkout returns the loan it saved
+  ---
+  duration_ms: 0.7117
+  type: 'test'
+  ...
+# Subtest: the borrow command checks out the requested book
+ok 5 - the borrow command checks out the requested book
+  ---
+  duration_ms: 3.681
+  type: 'test'
+  ...
+# Subtest: the return command returns the requested book
+ok 6 - the return command returns the requested book
+  ---
+  duration_ms: 0.659
+  type: 'test'
+  ...
+# Subtest: the return command displays the book ID and late fee
+ok 7 - the return command displays the book ID and late fee
+  ---
+  duration_ms: 0.5437
+  type: 'test'
+  ...
+# Subtest: the borrow command displays the book ID and due day
+ok 8 - the borrow command displays the book ID and due day
+  ---
+  duration_ms: 2.7957
+  type: 'test'
+  ...
+# Subtest: creates a loan due seven days after today
+ok 9 - creates a loan due seven days after today
+  ---
+  duration_ms: 9.1843
+  type: 'test'
+  ...
+# Subtest: finds a saved loan by book ID
+ok 10 - finds a saved loan by book ID
+  ---
+  duration_ms: 6.0021
+  type: 'test'
+  ...
+# Subtest: a removed loan can no longer be found
+ok 11 - a removed loan can no longer be found
+  ---
+  duration_ms: 0.5702
+  type: 'test'
+  ...
+# Subtest: a loan is due seven days after checkout
+ok 12 - a loan is due seven days after checkout
+  ---
+  duration_ms: 7.2101
+  type: 'test'
+  ...
+# Subtest: checkout creates a loan record for the book
+ok 13 - checkout creates a loan record for the book
+  ---
+  duration_ms: 0.6423
+  type: 'test'
+  ...
+# Subtest: createLoan returns a Loan instance
+ok 14 - createLoan returns a Loan instance
+  ---
+  duration_ms: 0.4855
+  type: 'test'
+  ...
+# Subtest: returning a borrowed book removes its active loan
+ok 15 - returning a borrowed book removes its active loan
+  ---
+  duration_ms: 4.7388
+  type: 'test'
+  ...
+# Subtest: returning a book two days late gives a receipt with a fee of 2
+ok 16 - returning a book two days late gives a receipt with a fee of 2
+  ---
+  duration_ms: 0.7192
+  type: 'test'
+  ...
+# Subtest: returning a book with no active loan does not remove anything
+ok 17 - returning a book with no active loan does not remove anything
+  ---
+  duration_ms: 0.4354
+  type: 'test'
+  ...
+# Subtest: a book returned on its due day has no late fee
+ok 18 - a book returned on its due day has no late fee
+  ---
+  duration_ms: 5.6312
+  type: 'test'
+  ...
+# Subtest: returning a book two days late costs 2 fee units
+ok 19 - returning a book two days late costs 2 fee units
+  ---
+  duration_ms: 0.7278
+  type: 'test'
+  ...
+# Subtest: returning a book before its due day costs nothing
+ok 20 - returning a book before its due day costs nothing
+  ---
+  duration_ms: 0.4954
+  type: 'test'
+  ...
+1..20
+# tests 20
+# suites 0
+# pass 20
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 541.085
+# start of coverage report
+# ---------------------------------------------------------------------
+# file                 | line % | branch % | funcs % | uncovered lines
+# ---------------------------------------------------------------------
+# src                  |        |          |         | 
+#  checkout-service.js | 100.00 |   100.00 |  100.00 | 
+#  library-console.js  | 100.00 |   100.00 |  100.00 | 
+#  loan-factory.js     | 100.00 |   100.00 |  100.00 | 
+#  loan-repository.js  | 100.00 |   100.00 |  100.00 | 
+#  loan.js             | 100.00 |   100.00 |  100.00 | 
+#  return-service.js   | 100.00 |   100.00 |  100.00 | 
+#  return.js           | 100.00 |   100.00 |  100.00 | 
+#  time.js             | 100.00 |   100.00 |  100.00 | 
+# ---------------------------------------------------------------------
+# all files            | 100.00 |   100.00 |  100.00 | 
+# ---------------------------------------------------------------------
+# end of coverage report
