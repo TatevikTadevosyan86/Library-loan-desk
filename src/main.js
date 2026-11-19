@@ -23,7 +23,12 @@ const terminal = createInterface({
   output: process.stdout,
 });
 
-console.log('Enter borrow B42, return B42, or exit.');
+console.log(
+  'To borrow a book, type: borrow B41\n' +
+  'To return it, type: return B41\n' +
+  'Replace B41 with the book ID you want.\n' +
+  'To close the program, type: exit'
+);
 
 terminal.on('line', (command) => {
   if (command === 'exit') {
